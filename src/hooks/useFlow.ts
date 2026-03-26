@@ -13,20 +13,23 @@ export function useFlow() {
 
   const evaluateDecisionLogic = (logic: string): boolean => {
     const decisions = state.decisions;
-    try {
-      // Safe evaluation: replace variable names with their boolean values
-      const evaluated = logic.replace(/\b([a-z_]+)\b/g, (match) => {
-        if (match in decisions) return String(decisions[match]);
-        return match;
-      });
-      // Only allow simple boolean expressions
-      if (/^[a-z_\s=!&|()truefals]+$/i.test(evaluated)) {
-        return Function('"use strict"; return (' + evaluated + ')')() as boolean;
-      }
-      return false;
-    } catch {
-      return false;
+    // Safe evaluation: parse simple "variable == true/false" expressions joined by && or ||
+    // Supports: "var == true", "var == false", combined with && / ||
+    const evaluateAtom = (atom: string): boolean => {
+      const match = atom.trim().match(/^([a-z_]+)\s*==\s*(true|false)$/i);
+      if (!match) return false;
+      const [, varName, expected] = match;
+      const actual = decisions[varName];
+      return actual === (expected.toLowerCase() === 'true');
+    };
+
+    if (logic.includes('||')) {
+      return logic.split('||').some((part) => evaluateAtom(part));
     }
+    if (logic.includes('&&')) {
+      return logic.split('&&').every((part) => evaluateAtom(part));
+    }
+    return evaluateAtom(logic);
   };
 
   return {
