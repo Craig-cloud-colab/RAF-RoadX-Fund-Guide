@@ -1,13 +1,58 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>RAF RoadX &amp; Fund Guide</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RAF Claims Navigator – Claim Guidance Tool</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Disclaimer Modal -->
+  <div id="disclaimer-overlay" class="overlay active">
+    <div class="modal">
+      <div class="modal-icon">⚖️</div>
+      <h2>Important Disclaimer</h2>
+      <p style="font-size:0.93rem; line-height:1.7; margin-bottom:1.2rem;">
+        "RAF Claims Navigator is an independent, privately developed educational tool.
+        It is not affiliated with, endorsed by, or associated with the Road Accident Fund (RAF)
+        or any government entity. The app does not provide legal advice or legal services.
+        Users are encouraged to seek independent legal assistance where appropriate.
+        The information provided does not constitute legal advice, and no attorney-client
+        relationship is created through the use of this platform. Users are encouraged to seek
+        independent legal advice where appropriate. Where users choose to seek legal assistance,
+        the platform may facilitate connections with independent legal professionals.
+        RAF Claims Navigator does not recommend, endorse, or favour any specific attorney or
+        law firm. Users remain entirely free to select their own legal representation."
+      </p>
+      <button id="accept-disclaimer" class="btn btn-primary">I Understand &amp; Accept</button>
+    </div>
+  </div>
+
+  <!-- App Shell -->
+  <div id="app" class="hidden">
+    <header class="app-header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-icon">🛣️</span>
+          <div>
+            <div class="logo-title">RAF Claims Navigator</div>
+            <div class="logo-subtitle">Claim Guidance Tool v1.0</div>
+          </div>
+        </div>
+        <div id="progress-bar-wrap">
+          <div id="progress-bar"></div>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" class="container"></main>
+
+    <footer class="app-footer">
+      <p>Educational tool only &mdash; not legal advice &mdash; RAF Claims Navigator v1.0</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
 </html>

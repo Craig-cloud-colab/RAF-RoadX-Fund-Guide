@@ -1,4 +1,4 @@
-/* RAF RoadX & Fund Guide — script.js */
+/* RAF Claims Navigator – Claim Guidance Tool — script.js */
 'use strict';
 
 // ─── App State ───────────────────────────────────────────────────────────────
@@ -79,7 +79,7 @@ function renderEntry() {
     <div class="card">
       <div class="card-header">
         <div class="card-step">Welcome</div>
-        <h2>RAF RoadX &amp; Fund Guide</h2>
+        <h2>RAF Claims Navigator – Claim Guidance Tool</h2>
       </div>
       <div class="card-body">
         <p style="margin-bottom:1rem; font-size:0.96rem;">
